@@ -10,7 +10,7 @@ const Login = () => {
     return(
 
            <div className="Login">
-        <div className='container justify-content-center text-center shadow p-3 mb-5 bg-body border rounded' style={{
+        <div className='container justify-content-center text-center shadow p-3 mb-5 bg-body border border-primary rounded' style={{
             width: 400,
             marginTop: 40
           }}>

@@ -7,7 +7,7 @@ const Inscripciones = () => {
 
     return(
         <div className="home" style={{
-            width: "100%",
+            width: 1263,
         }}>
             <>
             <Navbar/>
@@ -24,7 +24,9 @@ const Inscripciones = () => {
                     marginTop: 10,
                     background: '#efefef'
                 }}>
-                    <Form>
+                    <Form style={{
+                        marginBottom: 20
+                    }}>
                         <Row>
                             <Col md={5}>
                             <FormGroup>
@@ -59,19 +61,25 @@ const Inscripciones = () => {
 
                     <div>
                         <Row>
-                            <Col md={4}>
+                            <Col md={4} style={{
+                                marginBottom: 20
+                            }}>
                                 <Combobox
                                     placeholder="Periodo"
                                     data={["Enero/Abril", "Mayo/Agosto", "Septiembre/Diciembre"]}
                                 />
                             </Col>
-                            <Col md={4}>
+                            <Col md={4} style={{
+                                marginBottom: 20
+                            }}>
                                 <Combobox
                                     placeholder="Tipo de Pasante"
                                     data={["Pasante a Medio Tiempo(6 Horas Diarias)", "Pasante a Tiempo Completo (8 Horas Diarias)", "Pasante de Todo el Periodo (8 Horas Diarias)"]}
                                 />
                             </Col>
-                            <Col md={4}>
+                            <Col md={4} style={{
+                                marginBottom: 20
+                            }}>
                                 <Combobox
                                     placeholder="Dia de la Asesoria"
                                     data={["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]}
