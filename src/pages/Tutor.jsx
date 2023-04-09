@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "../components/Navbar"
 import Combobox from "react-widgets/Combobox";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Tutor = () => {
+
+    const [inputs, setInputs] = useState({
+        name: "",
+        email: ""
+    });
+
+    const [err,setError] = useState(null)
+
+    const navigate = useNavigate()
+
+    const handleChange = e =>{
+        setInputs(prev=>({...prev, [e.target.name]: e.target.value}))
+    }
+
+    const handleSubmit = async e =>{
+        e.preventDefault()
+
+        try{
+            
+            await axios.post("/tutors/add", inputs)
+            navigate("/");
+
+        }catch(err){
+            setError(err.response.data)
+        }
+    }
 
     return(
         <div className="home" style={{
@@ -35,6 +63,7 @@ const Tutor = () => {
                                 name="name"
                                 placeholder="Nombre y Apellido"
                                 type="text"
+                                onChange={handleChange}
                                 />
                             </FormGroup>
                             </Col>
@@ -45,11 +74,12 @@ const Tutor = () => {
                                 name="email"
                                 placeholder="Correo"
                                 type="email"
+                                onChange={handleChange}
                                 />
                             </FormGroup>
                             </Col>
                             <Col md={2}>
-                                <Button style={{
+                                <Button onClick={handleSubmit} style={{
                                 background: "#990000"
                                 }}>
                                 Validar
@@ -101,7 +131,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora1" type="checkbox" />
                                                     <Label>
                                                     4:20PM a 4:40PM
                                                     </Label>
@@ -109,7 +139,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora2" type="checkbox" />
                                                     <Label>
                                                     4:40PM a 5:00PM
                                                     </Label>
@@ -117,7 +147,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora3" type="checkbox" />
                                                     <Label>
                                                     5:00PM a 5:20PM
                                                     </Label>
@@ -125,7 +155,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora4" type="checkbox" />
                                                     <Label>
                                                     5:20PM a 5:40PM
                                                     </Label>
@@ -133,7 +163,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora5" type="checkbox" />
                                                     <Label>
                                                     5:40PM a 6:00PM
                                                     </Label>
@@ -141,7 +171,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora6" type="checkbox" />
                                                     <Label>
                                                     6:00PM a 6:20PM
                                                     </Label>
@@ -152,7 +182,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora7" type="checkbox" />
                                                     <Label>
                                                     6:20PM a 6:40PM
                                                     </Label>
@@ -160,7 +190,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora8" type="checkbox" />
                                                     <Label>
                                                     6:40PM a 7:00PM
                                                     </Label>
@@ -168,7 +198,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora9" type="checkbox" />
                                                     <Label>
                                                     7:00PM a 7:20PM
                                                     </Label>
@@ -176,7 +206,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora10" type="checkbox" />
                                                     <Label>
                                                     7:20PM a 7:40PM
                                                     </Label>
@@ -184,7 +214,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora11" type="checkbox" />
                                                     <Label>
                                                     7:40PM a 8:00PM
                                                     </Label>
@@ -192,7 +222,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora12" type="checkbox" />
                                                     <Label>
                                                     8:00PM a 8:20PM
                                                     </Label>
@@ -228,7 +258,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora1" type="checkbox" />
                                                     <Label>
                                                     4:20PM a 4:40PM
                                                     </Label>
@@ -236,7 +266,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora2" type="checkbox" />
                                                     <Label>
                                                     4:40PM a 5:00PM
                                                     </Label>
@@ -244,7 +274,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora3" type="checkbox" />
                                                     <Label>
                                                     5:00PM a 5:20PM
                                                     </Label>
@@ -252,7 +282,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora4" type="checkbox" />
                                                     <Label>
                                                     5:20PM a 5:40PM
                                                     </Label>
@@ -260,7 +290,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora5" type="checkbox" />
                                                     <Label>
                                                     5:40PM a 6:00PM
                                                     </Label>
@@ -268,7 +298,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora6" type="checkbox" />
                                                     <Label>
                                                     6:00PM a 6:20PM
                                                     </Label>
@@ -279,7 +309,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora7" type="checkbox" />
                                                     <Label>
                                                     6:20PM a 6:40PM
                                                     </Label>
@@ -287,7 +317,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora8" type="checkbox" />
                                                     <Label>
                                                     6:40PM a 7:00PM
                                                     </Label>
@@ -295,7 +325,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora9" type="checkbox" />
                                                     <Label>
                                                     7:00PM a 7:20PM
                                                     </Label>
@@ -303,7 +333,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora10" type="checkbox" />
                                                     <Label>
                                                     7:20PM a 7:40PM
                                                     </Label>
@@ -311,7 +341,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora11" type="checkbox" />
                                                     <Label>
                                                     7:40PM a 8:00PM
                                                     </Label>
@@ -319,7 +349,7 @@ const Tutor = () => {
                                                 <FormGroup
                                                     check
                                                 >
-                                                    <Input name="hora" type="radio" />
+                                                    <Input name="hora12" type="checkbox" />
                                                     <Label>
                                                     8:00PM a 8:20PM
                                                     </Label>
