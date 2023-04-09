@@ -1,7 +1,7 @@
 import React from "react";
 import logourbe from "../img/logourbe.png"
 import Navbar from "../components/Navbar";
-import { Button, Form, FormGroup, Input } from "reactstrap";
+import { Button, Form, FormGroup, Input} from "reactstrap";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {

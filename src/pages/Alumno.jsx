@@ -1,10 +1,20 @@
 import React from "react";
 import Navbar from "../components/Navbar"
 import Combobox from "react-widgets/Combobox";
-import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import { Button, Col, Form, FormGroup, Input, Label, Row, Modal,ModalHeader, ModalBody, ModalFooter  } from "reactstrap";
 
-const Inscripciones = () => {
 
+
+class Alumno extends React.Component{
+    state={
+        open: false,
+    }
+
+   abrirPop=()=>{
+      this.setState({open: !this.state.open})
+   }
+
+    render(){
     return(
         <div className="home" style={{
             width: 1263,
@@ -48,8 +58,10 @@ const Inscripciones = () => {
                                 />
                             </FormGroup>
                             </Col>
+                            
+
                             <Col md={2}>
-                                <Button style={{
+                                <Button onClick={this.abrirPop} style={{
                                 background: "#990000"
                                 }}>
                                 Validar
@@ -57,7 +69,25 @@ const Inscripciones = () => {
                             </Col>
                         </Row>
                     </Form>
-              
+                   
+
+                     <Modal isOpen= {this.state.open} >
+                     
+                        <ModalHeader>
+                        Error
+                        </ModalHeader>
+                        <ModalBody>
+                         El correo ya se encuentra registrado
+                         
+                        </ModalBody>
+                        <ModalFooter>
+                        <Button onClick={this.abrirPop} style={{
+                                background: "#990000"
+                                }}>
+                                Volver
+                                </Button>
+                        </ModalFooter>
+                     </Modal>
 
                     <div>
                         <Row>
@@ -232,6 +262,11 @@ const Inscripciones = () => {
             
         </div>
     )
+   
 }
 
-export default Inscripciones
+}
+    
+  
+
+export default Alumno;
