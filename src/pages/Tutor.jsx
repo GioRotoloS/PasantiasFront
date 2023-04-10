@@ -5,22 +5,14 @@ import { Button, Col, Form, FormGroup, Input, Label, Row ,Modal,ModalHeader, Mod
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Tutor = () => {
-
-    const [inputs, setInputs] = useState({
-        name: "",
-        email: ""
-    });
+const Tutor = (args) => {
 
     const [err,setError] = useState(null)
 
     const navigate = useNavigate()
 
-    const handleChange = e =>{
-        setInputs(prev=>({...prev, [e.target.name]: e.target.value}))
-    }
-
-    const handleSubmit = async e =>{
+    const toggle = async e => {
+        setModal(!modal);
         e.preventDefault()
 
         try{
@@ -29,8 +21,27 @@ const Tutor = () => {
             navigate("/");
 
         }catch(err){
+            
             setError(err.response.data)
         }
+    }
+
+    const [modal, setModal] = useState(false);
+
+
+
+    const [inputs, setInputs] = useState({
+        name: "",
+        email: "",
+        period: "",
+        day_1: "",
+        hour1: "",
+        day_2: "",
+        hour2: ""
+    });
+
+    const handleChange = e =>{
+        setInputs(prev=>({...prev, [e.target.name]: e.target.value}))
     }
 
     return(
@@ -79,11 +90,11 @@ const Tutor = () => {
                             </FormGroup>
                             </Col>
                             <Col md={2}>
-                                <Button onClick={handleSubmit} style={{
+                                {/* <Button style={{
                                 background: "#990000"
                                 }}>
                                 Validar
-                                </Button>
+                                </Button> */}
                             </Col>
                         </Row>
                     </Form>
@@ -92,23 +103,44 @@ const Tutor = () => {
                     <div>
                         <Row>
                             <Col md={4}>
-                                <Combobox
+                                <FormGroup>
+                                    <Input
+                                    id="Period"
+                                    name="period"
                                     placeholder="Periodo"
-                                    data={["Enero/Abril", "Mayo/Agosto", "Septiembre/Diciembre"]}
-                                />
+                                    type="select"
+                                    onChange={handleChange}
+                                    >
+                                        <option disabled selected>
+                                            Periodo
+                                        </option>
+                                        <option>
+                                            Enero/Abril
+                                        </option>
+                                        <option>
+                                            Mayo/Agosto
+                                        </option>
+                                        <option>
+                                            Septiembre/Diciembre
+                                        </option>
+                                    </Input>
+                                </FormGroup>
                             </Col>
                         </Row>
                     </div>
 
                     <div  className='container p-3 mb-5 border border-danger rounded' style={{
                         width: '90%',
+                        height: '100%',
                         marginTop: 20,
                         background: "#364eaf"
                     }}>
 
                         <Row>
                             <Col>
-                                <div className='container p-3 mb-5 bg-body border border-danger rounded'>
+                                <div className='container p-3 mb-5 bg-body border border-danger rounded' style={{
+                                    height: "80%"
+                                }}>
 
                                     <div className="justify-content-center text-center" style={{
                                         marginBottom: 10
@@ -116,126 +148,68 @@ const Tutor = () => {
                                         Dia 1
                                     </div>
 
+                                    <Row>
                                     <Col md={6}>
-                                        <Combobox
-                                            placeholder="Dia de la Asesoria"
-                                            data={["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]}
-                                        />
+                                        <FormGroup>
+                                            <Input
+                                            id="Day"
+                                            name="day_1"
+                                            type="select"
+                                            onChange={handleChange}
+                                            >
+                                                <option disabled selected>
+                                                    Dia
+                                                </option>
+                                                <option>
+                                                    Lunes
+                                                </option>
+                                                <option>
+                                                    Martes
+                                                </option>
+                                                <option>
+                                                    Miercoles
+                                                </option>
+                                                <option>
+                                                    Jueves
+                                                </option>
+                                                <option>
+                                                    Viernes
+                                                </option>
+                                            </Input>
+                                        </FormGroup>
                                     </Col>
 
-                                    <Form style={{
-                                        marginTop: 20
-                                    }}>
-                                        <Row>
-                                            <Col md={6}>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora1" type="checkbox" />
-                                                    <Label>
-                                                    4:20PM a 4:40PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora2" type="checkbox" />
-                                                    <Label>
-                                                    4:40PM a 5:00PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora3" type="checkbox" />
-                                                    <Label>
-                                                    5:00PM a 5:20PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora4" type="checkbox" />
-                                                    <Label>
-                                                    5:20PM a 5:40PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora5" type="checkbox" />
-                                                    <Label>
-                                                    5:40PM a 6:00PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora6" type="checkbox" />
-                                                    <Label>
-                                                    6:00PM a 6:20PM
-                                                    </Label>
-                                                </FormGroup>
-                                            </Col>
-
-                                            <Col md={6}>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora7" type="checkbox" />
-                                                    <Label>
-                                                    6:20PM a 6:40PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora8" type="checkbox" />
-                                                    <Label>
-                                                    6:40PM a 7:00PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora9" type="checkbox" />
-                                                    <Label>
-                                                    7:00PM a 7:20PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora10" type="checkbox" />
-                                                    <Label>
-                                                    7:20PM a 7:40PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora11" type="checkbox" />
-                                                    <Label>
-                                                    7:40PM a 8:00PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora12" type="checkbox" />
-                                                    <Label>
-                                                    8:00PM a 8:20PM
-                                                    </Label>
-                                                </FormGroup>
-                                            </Col>
-                                        </Row>
-                                        
-                                    </Form>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Input
+                                            id="Hour"
+                                            name="hour1"
+                                            type="select"
+                                            onChange={handleChange}
+                                            >
+                                                <option disabled selected>
+                                                    Hora
+                                                </option>
+                                                <option>
+                                                    4:20PM a 7:40PM
+                                                </option>
+                                                <option>
+                                                    4:40PM a 8:00PM
+                                                </option>
+                                                <option>
+                                                    5:20PM a 8:20PM
+                                                </option>
+                                            </Input>
+                                        </FormGroup>
+                                    </Col>
+                                    </Row>
 
                                 </div>
                             </Col>
                             <Col>
-                                <div className='container p-3 mb-5 bg-body border border-danger rounded'>
+                                <div className='container p-3 mb-5 bg-body border border-danger rounded' style={{
+                                    height: "80%"
+                                }}>
 
                                 <div className="justify-content-center text-center" style={{
                                         marginBottom: 10
@@ -243,121 +217,61 @@ const Tutor = () => {
                                         Dia 2
                                     </div>
 
+                                    <Row>
                                     <Col md={6}>
-                                        <Combobox
-                                            placeholder="Dia de la Asesoria"
-                                            data={["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]}
-                                        />
+                                        <FormGroup>
+                                            <Input
+                                            id="Day"
+                                            name="day_2"
+                                            type="select"
+                                            onChange={handleChange}
+                                            >
+                                                <option disabled selected>
+                                                    Dia
+                                                </option>
+                                                <option>
+                                                    Lunes
+                                                </option>
+                                                <option>
+                                                    Martes
+                                                </option>
+                                                <option>
+                                                    Miercoles
+                                                </option>
+                                                <option>
+                                                    Jueves
+                                                </option>
+                                                <option>
+                                                    Viernes
+                                                </option>
+                                            </Input>
+                                        </FormGroup>
                                     </Col>
 
-                                    <Form style={{
-                                        marginTop: 20
-                                    }}>
-                                        <Row>
-                                            <Col md={6}>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora1" type="checkbox" />
-                                                    <Label>
-                                                    4:20PM a 4:40PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora2" type="checkbox" />
-                                                    <Label>
-                                                    4:40PM a 5:00PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora3" type="checkbox" />
-                                                    <Label>
-                                                    5:00PM a 5:20PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora4" type="checkbox" />
-                                                    <Label>
-                                                    5:20PM a 5:40PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora5" type="checkbox" />
-                                                    <Label>
-                                                    5:40PM a 6:00PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora6" type="checkbox" />
-                                                    <Label>
-                                                    6:00PM a 6:20PM
-                                                    </Label>
-                                                </FormGroup>
-                                            </Col>
-
-                                            <Col md={6}>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora7" type="checkbox" />
-                                                    <Label>
-                                                    6:20PM a 6:40PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora8" type="checkbox" />
-                                                    <Label>
-                                                    6:40PM a 7:00PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora9" type="checkbox" />
-                                                    <Label>
-                                                    7:00PM a 7:20PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora10" type="checkbox" />
-                                                    <Label>
-                                                    7:20PM a 7:40PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora11" type="checkbox" />
-                                                    <Label>
-                                                    7:40PM a 8:00PM
-                                                    </Label>
-                                                </FormGroup>
-                                                <FormGroup
-                                                    check
-                                                >
-                                                    <Input name="hora12" type="checkbox" />
-                                                    <Label>
-                                                    8:00PM a 8:20PM
-                                                    </Label>
-                                                </FormGroup>
-                                            </Col>
-                                        </Row>
-                                        
-                                    </Form>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Input
+                                            id="Hour"
+                                            name="hour2"
+                                            type="select"
+                                            onChange={handleChange}
+                                            >
+                                                <option disabled selected>
+                                                    Hora
+                                                </option>
+                                                <option>
+                                                    4:20PM a 7:40PM
+                                                </option>
+                                                <option>
+                                                    4:40PM a 8:00PM
+                                                </option>
+                                                <option>
+                                                    5:20PM a 8:20PM
+                                                </option>
+                                            </Input>
+                                        </FormGroup>
+                                    </Col>
+                                    </Row>
 
                                 </div>
                             </Col>
@@ -366,12 +280,21 @@ const Tutor = () => {
 
                     <div className="justify-content-center text-center">
                         <Button 
+                        onClick={toggle}
                         size="lg"
                         style={{
                         background: "#990000"
                         }}>
                         Registrar Horario
                         </Button>
+                        <Modal className='border border-danger rounded' isOpen={modal} toggle={toggle} {...args}>
+                            <ModalHeader style={{
+                                background: "#364eaf"
+                            }} toggle={toggle}>Error</ModalHeader>
+                            <ModalBody>
+                            {err && <p>{err}</p>}
+                            </ModalBody>
+                        </Modal>
                     </div>
                     
                 </div>

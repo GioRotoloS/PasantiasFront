@@ -1,20 +1,52 @@
-import React from "react";
+
+import React, { useState } from "react";
 import Navbar from "../components/Navbar"
 import Combobox from "react-widgets/Combobox";
 import { Button, Col, Form, FormGroup, Input, Label, Row, Modal,ModalHeader, ModalBody, ModalFooter  } from "reactstrap";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 
-class Alumno extends React.Component{
-    state={
-        open: false,
+const Alumno = (args) => {
+
+    const [err,setError] = useState(null)
+
+    const navigate = useNavigate()
+
+    const toggle = async e => {
+        setModal(!modal);
+        e.preventDefault()
+
+        try{
+            
+            await axios.post("/inters/register", inputs)
+            navigate("/");
+
+        }catch(err){
+            
+            setError(err.response.data)
+        }
     }
 
-   abrirPop=()=>{
-      this.setState({open: !this.state.open})
-   }
+    const [modal, setModal] = useState(false);
 
-    render(){
+
+
+    const [inputs, setInputs] = useState({
+        name: "",
+          email: "",
+          period: "",
+          inter_type: "",
+          tutor: "",
+          advisorys_day: "",
+          advisorys_hour: ""
+    });
+
+    const handleChange = e =>{
+        setInputs(prev=>({...prev, [e.target.name]: e.target.value}))
+    }
+
     return(
         <div className="home" style={{
             width: 1263,
@@ -35,7 +67,7 @@ class Alumno extends React.Component{
                     background: '#efefef'
                 }}>
                     <Form style={{
-                        marginBottom: 20
+                        marginBottom: 20,
                     }}>
                         <Row>
                             <Col md={5}>
@@ -45,6 +77,7 @@ class Alumno extends React.Component{
                                 name="name"
                                 placeholder="Nombre y Apellido"
                                 type="text"
+                                onChange={handleChange}
                                 />
                             </FormGroup>
                             </Col>
@@ -55,65 +88,93 @@ class Alumno extends React.Component{
                                 name="email"
                                 placeholder="Correo"
                                 type="email"
+                                onChange={handleChange}
                                 />
                             </FormGroup>
                             </Col>
                             
-
-                            <Col md={2}>
-                                <Button onClick={this.abrirPop} style={{
-                                background: "#990000"
-                                }}>
-                                Validar
-                                </Button>
-                            </Col>
                         </Row>
                     </Form>
-                   
-
-                     <Modal isOpen= {this.state.open} >
-                     
-                        <ModalHeader>
-                        Error
-                        </ModalHeader>
-                        <ModalBody>
-                         El correo ya se encuentra registrado
-                         
-                        </ModalBody>
-                        <ModalFooter>
-                        <Button onClick={this.abrirPop} style={{
-                                background: "#990000"
-                                }}>
-                                Volver
-                                </Button>
-                        </ModalFooter>
-                     </Modal>
 
                     <div>
                         <Row>
                             <Col md={4} style={{
                                 marginBottom: 20
                             }}>
-                                <Combobox
+                                <FormGroup>
+                                    <Input
+                                    id="Period"
+                                    name="period"
                                     placeholder="Periodo"
-                                    data={["Enero/Abril", "Mayo/Agosto", "Septiembre/Diciembre"]}
-                                />
+                                    type="select"
+                                    onChange={handleChange}
+                                    >
+                                        <option disabled selected>
+                                            Periodo
+                                        </option>
+                                        <option>
+                                            Enero/Abril
+                                        </option>
+                                        <option>
+                                            Mayo/Agosto
+                                        </option>
+                                        <option>
+                                            Septiembre/Diciembre
+                                        </option>
+                                    </Input>
+                                </FormGroup>
                             </Col>
                             <Col md={4} style={{
                                 marginBottom: 20
                             }}>
-                                <Combobox
+                                <FormGroup>
+                                    <Input
+                                    id="Inter_type"
+                                    name="inter_type"
                                     placeholder="Tipo de Pasante"
-                                    data={["Pasante a Medio Tiempo(6 Horas Diarias)", "Pasante a Tiempo Completo (8 Horas Diarias)", "Pasante de Todo el Periodo (8 Horas Diarias)"]}
-                                />
+                                    type="select"
+                                    onChange={handleChange}
+                                    >
+                                        <option disabled selected>
+                                            Tipo de Pasante
+                                        </option>
+                                        <option>
+                                        PASANTES A MEDIO TIEMPO (6 horas diarias)
+                                        </option>
+                                        <option>
+                                        PASANTES A TIEMPO COMPLETO (8 Horas diarias)
+                                        </option>
+                                        <option>
+                                        PASANTES DE TODO EL PERIODO (8 Horas diarias)
+                                        </option>
+                                    </Input>
+                                </FormGroup>
                             </Col>
                             <Col md={4} style={{
                                 marginBottom: 20
                             }}>
-                                <Combobox
-                                    placeholder="Dia de la Asesoria"
-                                    data={["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]}
-                                />
+                                <FormGroup>
+                                    <Input
+                                    id="Tutor"
+                                    name="tutor"
+                                    placeholder="Tutor"
+                                    type="select"
+                                    onChange={handleChange}
+                                    >
+                                        <option disabled selected>
+                                            Tutor
+                                        </option>
+                                        <option>
+                                            Tutor 1
+                                        </option>
+                                        <option>
+                                            Tutor 2
+                                        </option>
+                                        <option>
+                                            Tutor 3
+                                        </option>
+                                    </Input>
+                                </FormGroup>
                             </Col>
                         </Row>
                     </div>
@@ -125,10 +186,33 @@ class Alumno extends React.Component{
                     }}>
 
                         <Col md={4}>
-                            <Combobox
-                            placeholder="Tutor"
-                            data={["Tutor 1", "Tutor 2", "Tutor 3"]}
-                            />
+                            <FormGroup>
+                                <Input
+                                id="Advisorys_day"
+                                name="advisorys_day"
+                                type="select"
+                                onChange={handleChange}
+                                >
+                                    <option disabled selected>
+                                        Dia
+                                    </option>
+                                    <option>
+                                        Lunes
+                                    </option>
+                                    <option>
+                                        Martes
+                                    </option>
+                                    <option>
+                                        Miercoles
+                                    </option>
+                                    <option>
+                                        Jueves
+                                    </option>
+                                    <option>
+                                        Viernes
+                                    </option>
+                                </Input>
+                            </FormGroup>
                         </Col>
 
                         <div className='container p-3 mb-5 bg-body border border-danger rounded' style={{
@@ -141,7 +225,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="4:20PM a 4:40PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         4:20PM a 4:40PM
                                         </Label>
@@ -149,7 +239,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="4:40PM a 5:00PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         4:40PM a 5:00PM
                                         </Label>
@@ -157,7 +253,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="5:00PM a 5:20PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         5:00PM a 5:20PM
                                         </Label>
@@ -165,7 +267,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="5:20PM a 5:40PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         5:20PM a 5:40PM
                                         </Label>
@@ -173,7 +281,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="5:40PM a 6:00PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         5:40PM a 6:00PM
                                         </Label>
@@ -181,7 +295,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="6:00PM a 6:20PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         6:00PM a 6:20PM
                                         </Label>
@@ -192,7 +312,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="6:20PM a 6:40PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         6:20PM a 6:40PM
                                         </Label>
@@ -200,7 +326,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="6:40PM a 7:00PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         6:40PM a 7:00PM
                                         </Label>
@@ -208,7 +340,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="7:00PM a 7:20PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         7:00PM a 7:20PM
                                         </Label>
@@ -216,7 +354,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="7:20PM a 7:40PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         7:20PM a 7:40PM
                                         </Label>
@@ -224,7 +368,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="7:40PM a 8:00PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         7:40PM a 8:00PM
                                         </Label>
@@ -232,7 +382,13 @@ class Alumno extends React.Component{
                                     <FormGroup
                                         check
                                     >
-                                        <Input name="hora" type="radio" />
+                                        <Input 
+                                        id="Advisorys_hour"
+                                        name="advisorys_hour"
+                                        type="radio"
+                                        value="8:00PM a 8:20PM"
+                                        onChange={handleChange} 
+                                        />
                                         <Label>
                                         8:00PM a 8:20PM
                                         </Label>
@@ -245,13 +401,22 @@ class Alumno extends React.Component{
                     </div>
 
                     <div className="justify-content-center text-center">
-                        <Button 
+                        <Button
+                        onClick={toggle}
                         size="lg"
                         style={{
                         background: "#990000"
                         }}>
                         Registrar Horario
                         </Button>
+                        <Modal className='border border-danger rounded' isOpen={modal} toggle={toggle} {...args}>
+                            <ModalHeader style={{
+                                background: "#364eaf"
+                            }} toggle={toggle}>Error</ModalHeader>
+                            <ModalBody>
+                            {err && <p>{err}</p>}
+                            </ModalBody>
+                        </Modal>
                     </div>
                     
                 </div>
@@ -264,9 +429,6 @@ class Alumno extends React.Component{
     )
    
 }
-
-}
-    
   
 
 export default Alumno;
