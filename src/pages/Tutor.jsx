@@ -35,9 +35,27 @@ const Tutor = (args) => {
         email: "",
         period: "",
         day_1: "",
-        hour1: "",
+        hour1_1: "",
+        hour1_2: "",
+        hour1_3: "",
+        hour1_4: "",
+        hour1_5: "",
+        hour1_6: "",
+        hour1_7: "",
+        hour1_8: "",
+        hour1_9: "",
+        hour1_10: "",
         day_2: "",
-        hour2: ""
+        hour2_1: "",
+        hour2_2: "",
+        hour2_3: "",
+        hour2_4: "",
+        hour2_5: "",
+        hour2_6: "",
+        hour2_7: "",
+        hour2_8: "",
+        hour2_9: "",
+        hour2_10: "",
     });
 
     const handleChange = e =>{
@@ -139,7 +157,7 @@ const Tutor = (args) => {
                         <Row>
                             <Col>
                                 <div className='container p-3 mb-5 bg-body border border-danger rounded' style={{
-                                    height: "80%"
+                                    height: "90%"
                                 }}>
 
                                     <div className="justify-content-center text-center" style={{
@@ -178,37 +196,208 @@ const Tutor = (args) => {
                                             </Input>
                                         </FormGroup>
                                     </Col>
-
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Input
-                                            id="Hour"
-                                            name="hour1"
-                                            type="select"
-                                            onChange={handleChange}
-                                            >
-                                                <option disabled selected>
-                                                    Hora
-                                                </option>
-                                                <option>
-                                                    4:20PM a 7:40PM
-                                                </option>
-                                                <option>
-                                                    4:40PM a 8:00PM
-                                                </option>
-                                                <option>
-                                                    5:20PM a 8:20PM
-                                                </option>
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
                                     </Row>
 
+                                    <Row>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour1_1"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Primera Hora
+                                                    </option>
+                                                    <option>
+                                                        4:20PM a 4:40PM
+                                                    </option>
+                                                    <option>
+                                                        4:40PM a 5:00PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour1_2"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Segunda Hora
+                                                    </option>
+                                                    <option>
+                                                        5:00PM a 5:20PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour1_3"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Tercera Hora
+                                                    </option>
+                                                    <option>
+                                                        5:20PM a 5:40PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour1_4"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Cuarta Hora
+                                                    </option>
+                                                    <option>
+                                                        5:40PM a 6:00PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour1_5"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Quinta Hora
+                                                    </option>
+                                                    <option>
+                                                        6:00PM a 6:20PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour1_6"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Sexta Hora
+                                                    </option>
+                                                    <option>
+                                                        6:20PM a 6:40PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour1_7"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Septima Hora
+                                                    </option>
+                                                    <option>
+                                                        6:40PM a 7:00PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour1_8"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Octava Hora
+                                                    </option>
+                                                    <option>
+                                                        7:00PM a 7:20PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour1_9"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Novena Hora
+                                                    </option>
+                                                    <option>
+                                                        7:20PM a 7:40PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour1_10"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Decima Hora
+                                                    </option>
+                                                    <option>
+                                                        7:40PM a 8:00PM
+                                                    </option>
+                                                    <option>
+                                                        8:00PM a 8:20PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
                                 </div>
                             </Col>
                             <Col>
                                 <div className='container p-3 mb-5 bg-body border border-danger rounded' style={{
-                                    height: "80%"
+                                    height: "90%"
                                 }}>
 
                                 <div className="justify-content-center text-center" style={{
@@ -247,30 +436,202 @@ const Tutor = (args) => {
                                             </Input>
                                         </FormGroup>
                                     </Col>
+                                    </Row>
 
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Input
-                                            id="Hour"
-                                            name="hour2"
-                                            type="select"
-                                            onChange={handleChange}
-                                            >
-                                                <option disabled selected>
-                                                    Hora
-                                                </option>
-                                                <option>
-                                                    4:20PM a 7:40PM
-                                                </option>
-                                                <option>
-                                                    4:40PM a 8:00PM
-                                                </option>
-                                                <option>
-                                                    5:20PM a 8:20PM
-                                                </option>
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
+                                    <Row>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour2_1"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Primera Hora
+                                                    </option>
+                                                    <option>
+                                                        4:20PM a 4:40PM
+                                                    </option>
+                                                    <option>
+                                                        4:40PM a 5:00PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour2_2"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Segunda Hora
+                                                    </option>
+                                                    <option>
+                                                        5:00PM a 5:20PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour2_3"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Tercera Hora
+                                                    </option>
+                                                    <option>
+                                                        5:20PM a 5:40PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour2_4"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Cuarta Hora
+                                                    </option>
+                                                    <option>
+                                                        5:40PM a 6:00PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour2_5"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Quinta Hora
+                                                    </option>
+                                                    <option>
+                                                        6:00PM a 6:20PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour2_6"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Sexta Hora
+                                                    </option>
+                                                    <option>
+                                                        6:20PM a 6:40PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour2_7"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Septima Hora
+                                                    </option>
+                                                    <option>
+                                                        6:40PM a 7:00PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour2_8"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Octava Hora
+                                                    </option>
+                                                    <option>
+                                                        7:00PM a 7:20PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour2_9"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Novena Hora
+                                                    </option>
+                                                    <option>
+                                                        7:20PM a 7:40PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Input
+                                                id="Hour"
+                                                name="hour2_10"
+                                                type="select"
+                                                onChange={handleChange}
+                                                >
+                                                    <option disabled selected>
+                                                        Decima Hora
+                                                    </option>
+                                                    <option>
+                                                        7:40PM a 8:00PM
+                                                    </option>
+                                                    <option>
+                                                        8:00PM a 8:20PM
+                                                    </option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
                                     </Row>
 
                                 </div>
