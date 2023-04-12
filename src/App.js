@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 import "react-widgets/scss/styles.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Agenda from "./pages/Agenda";
 
 
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Inicio/>
+  },
+  {
+    path: "/agenda",
+    element: <Agenda/>
   },
 ]);
 

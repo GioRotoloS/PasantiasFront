@@ -49,7 +49,7 @@ const Login = () => {
                   background: "#990000",
                   margin: 5,
                   width: 150
-                }}>
+                }}href = "/agenda">
                   Agenda
                 </Button>
             </div>

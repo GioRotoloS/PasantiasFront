@@ -51,7 +51,7 @@ function Menu(args) {
                   background: "#001d92",
                   margin: 5,
                   width: 100
-                }}>
+                }}href="/agenda">
                   Agenda
                 </Button>
             </NavItem>
