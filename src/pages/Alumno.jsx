@@ -1,18 +1,38 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar"
 import Combobox from "react-widgets/Combobox";
 import { Button, Col, Form, FormGroup, Input, Label, Row, Modal,ModalHeader, ModalBody, ModalFooter  } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Pdf from "../Pdf";
-import { PDFViewer, PDFDownloadLink} from "@react-pdf/renderer";
+
 
 
 const Alumno = (args) => {
 
+    const [tutors, setTutors] = useState([]);
+
+    useEffect(()=>{
+
+        const fetchData = async ()=>{
+            try{
+
+                const res = await axios.get(`/tutors/tutors`);
+                setTutors(res.data);
+
+            }catch(err){
+
+                console.log(err);
+
+            }
+        };
+
+        fetchData();
+
+    }, []);
+
     const [err,setError] = useState(null)
-    const [verPdf, setVerPdf]= useState(false);
+
     const navigate = useNavigate()
 
     const toggle = async e => {
@@ -39,6 +59,7 @@ const Alumno = (args) => {
           email: "",
           period: "",
           inter_type: "",
+          week: "",
           tutor: "",
           advisorys_day: "",
           advisorys_hour: ""
@@ -71,7 +92,7 @@ const Alumno = (args) => {
                         marginBottom: 20,
                     }}>
                         <Row>
-                            <Col md={5}>
+                            <Col md={4}>
                             <FormGroup>
                                 <Input
                                 id="Name"
@@ -82,7 +103,7 @@ const Alumno = (args) => {
                                 />
                             </FormGroup>
                             </Col>
-                            <Col md={5}>
+                            <Col md={4}>
                             <FormGroup>
                                 <Input
                                 id="Email"
@@ -93,12 +114,65 @@ const Alumno = (args) => {
                                 />
                             </FormGroup>
                             </Col>
+
+                            <Col md={4} style={{
+                                marginBottom: 20
+                            }}>
+                                <FormGroup>
+                                    <Input
+                                    id="Inter_type"
+                                    name="inter_type"
+                                    placeholder="Tipo de Pasante"
+                                    type="select"
+                                    onChange={handleChange}
+                                    >
+                                        <option disabled selected>
+                                            Tipo de Pasante
+                                        </option>
+                                        <option>
+                                        PASANTES A MEDIO TIEMPO (6 horas diarias)
+                                        </option>
+                                        <option>
+                                        PASANTES A TIEMPO COMPLETO (8 Horas diarias)
+                                        </option>
+                                        <option>
+                                        PASANTES DE TODO EL PERIODO (8 Horas diarias)
+                                        </option>
+                                    </Input>
+                                </FormGroup>
+                            </Col>
                             
                         </Row>
                     </Form>
 
                     <div>
+                        
                         <Row>
+                            
+                            <Col md={4} style={{
+                                marginBottom: 20
+                            }}>
+                                <FormGroup>
+                                    <Input
+                                    id="Tutor"
+                                    name="tutor"
+                                    placeholder="Tutor"
+                                    type="select"
+                                    onChange={handleChange}
+                                    >
+                                        <option disabled selected>
+                                            Tutor
+                                        </option>
+                                        {tutors.map((tutors)=>{
+                                            return(
+                                                <option key={tutors._id}>
+                                                    {tutors.name}
+                                                </option>
+                                            )
+                                        })}
+                                    </Input>
+                                </FormGroup>
+                            </Col>
                             <Col md={4} style={{
                                 marginBottom: 20
                             }}>
@@ -130,49 +204,23 @@ const Alumno = (args) => {
                             }}>
                                 <FormGroup>
                                     <Input
-                                    id="Inter_type"
-                                    name="inter_type"
-                                    placeholder="Tipo de Pasante"
+                                    id="Week"
+                                    name="week"
+                                    placeholder="Semana de Inicio de las Pasantias"
                                     type="select"
                                     onChange={handleChange}
                                     >
                                         <option disabled selected>
-                                            Tipo de Pasante
+                                            Semana de Inicio de las Pasantias
                                         </option>
                                         <option>
-                                        PASANTES A MEDIO TIEMPO (6 horas diarias)
+                                            Segunda semana del Trimestre
                                         </option>
                                         <option>
-                                        PASANTES A TIEMPO COMPLETO (8 Horas diarias)
+                                            Tercera semana del Trimestre
                                         </option>
                                         <option>
-                                        PASANTES DE TODO EL PERIODO (8 Horas diarias)
-                                        </option>
-                                    </Input>
-                                </FormGroup>
-                            </Col>
-                            <Col md={4} style={{
-                                marginBottom: 20
-                            }}>
-                                <FormGroup>
-                                    <Input
-                                    id="Tutor"
-                                    name="tutor"
-                                    placeholder="Tutor"
-                                    type="select"
-                                    onChange={handleChange}
-                                    >
-                                        <option disabled selected>
-                                            Tutor
-                                        </option>
-                                        <option>
-                                            Tutor 1
-                                        </option>
-                                        <option>
-                                            Tutor 2
-                                        </option>
-                                        <option>
-                                            Tutor 3
+                                            Cuarta semana del Trimestre
                                         </option>
                                     </Input>
                                 </FormGroup>
@@ -421,21 +469,12 @@ const Alumno = (args) => {
                     </div>
                     
                 </div>
-          
+
             </div>
            
 
-            <PDFDownloadLink
-        document={<Pdf  />}
-        fileName="cronograma.pdf"
-      >
-        <Button variant="info">Descargar PDF</Button>
-      </PDFDownloadLink>
-
-
+            
         </div>
-
-        
     )
    
 }
