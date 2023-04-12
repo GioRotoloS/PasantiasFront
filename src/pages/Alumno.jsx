@@ -5,13 +5,14 @@ import Combobox from "react-widgets/Combobox";
 import { Button, Col, Form, FormGroup, Input, Label, Row, Modal,ModalHeader, ModalBody, ModalFooter  } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Pdf from "../Pdf";
+import { PDFViewer, PDFDownloadLink} from "@react-pdf/renderer";
 
 
 const Alumno = (args) => {
 
     const [err,setError] = useState(null)
-
+    const [verPdf, setVerPdf]= useState(false);
     const navigate = useNavigate()
 
     const toggle = async e => {
@@ -420,12 +421,21 @@ const Alumno = (args) => {
                     </div>
                     
                 </div>
-
+          
             </div>
            
 
-            
+            <PDFDownloadLink
+        document={<Pdf  />}
+        fileName="cronograma.pdf"
+      >
+        <Button variant="info">Descargar PDF</Button>
+      </PDFDownloadLink>
+
+
         </div>
+
+        
     )
    
 }
